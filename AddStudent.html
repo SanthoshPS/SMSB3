@@ -1,0 +1,75 @@
+<html>
+ <head>
+   
+  <body style="background-color:rgb(176, 230, 197);">
+<h1 style= "text-align:center; color:black;">Add New Student </h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script> 
+function AddingStudent()
+{
+  var myform= document.getElementById('studentForm');
+  var Student={
+    "Studentid" :myform.elements['StudentID'].value,
+    'Firstname': myform.elements['fname'].value,
+    "Lastname" :myform.elements['lname'].value,
+    "DOB" :myform.elements['DOB'].value,
+    "Gender" :myform.elements['Gender'].value,
+    "Phoneno" :myform.elements['PhoneNo'].value,
+    "EmailID" :myform.elements['Email'].value,
+    "Address" :myform.elements['Address'].value,
+    "YOA" :myform.elements['YOA'].value,
+    "Course" :myform.elements['Course'].value,
+    "Status" :myform.elements['Studentstatus'].value
+
+  }
+
+  $.ajax({
+  method: "POST",
+  url: "http://localhost:4000/addstudent",
+  data: Student,
+  Success: (result) =>{
+    console.log("1",result);
+  },
+  error:(error)=>{
+    console.log("2",error);
+  }
+  });
+}
+</script>
+
+
+<form id="studentForm" style= "text-align:left">
+    <label for= "StudentID" >Student ID</label>
+    <input type ="text" id="StudentID" name="StudentID" required> <br><br>
+    <label for="fname">Firstname:</label>
+    <input type="text" id="fname" name="fname" required ><br><br>
+    <label for="lname">Lastname:</label>
+    <input type="text" id="lname" name="lname"><br><br>
+    <label for= "Gender">Gender</label>
+    <input type ="text" id="Gender" name="Gender" required > <br><br>
+    <label for= "DOB">DOB</label>
+    <input type ="date" id="DOB" name="DOB"> <br><br>
+    <label for= "PhoneNo">PhoneNo</label>
+    <input type ="PhoneNo" id="PhoneNo" name="PhoneNo"> <br><br>
+    <label for= "Email -Id">Email</label>
+    <input type ="text" id="Email" name="EmailId"> <br><br>
+    <label for= "Address">Address</label>
+    <input type ="text" id="Address" name="Address" required > <br><br>
+    <label for= "YOA">YOA</label>
+    <input type ="date" id="YOA" name="YOA"> <br><br>
+    <label for= "Course">Course ID</label>
+    <input type ="text" id="Course" name="Course" max="7" min="5" required> <br><br>
+    <label for= "Studentstatus">Student status</label>
+    <input type ="text" id="Studentstatus" name="Studentstatus"> <br><br>
+
+    <button onclick= "AddingStudent()" style="background-color: rgb(95, 111, 201);"> Add STUDENT </button>
+    <button value=" Go back" onclick="history.back()" style="background-color: rgb(43, 44, 3);"> Cancel </button>
+
+
+
+  </form>
+ 
+</body>
+</html>

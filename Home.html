@@ -1,0 +1,26 @@
+
+<html>
+<head>
+<title>Home Page</title>
+<body style=background-color:rgb(69,133,230);text-align:center><h1> Student Management System</h1></body>
+
+<label for="signup"> I am : </label>
+<select id="signup"onchange="move(this.value)">
+  <option value=" Add Student">Choose any options</option>
+    <option value="viewmark.html">Student</option>
+    <option value="Adminpage.html">Admin</option>
+    <option value="Faculty.html">Faculty</option>
+  </select>
+  <br><br>
+</head>
+
+<script>
+  function move(src)
+  {
+      window.location=src;
+  }
+
+</script>
+
+</body>
+</html>

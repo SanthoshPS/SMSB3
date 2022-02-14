@@ -1,0 +1,77 @@
+<html>
+ 
+   
+  <body style="background-color:powderblue;">
+<h1 style= "text-align:center; color:black;">View Student Marks </h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script> 
+function viewmarks()
+{
+  
+  var myform= document.getElementById('studentFormmark');
+  var Student={
+     "srno" : myform.elements['srno'].value,
+     "Semester" : myform.elements['Semester'].value
+    
+  }
+
+  $.ajax({
+  method: "POST",
+  url: "http://localhost:4000/getmarks",
+  data: Student,
+  success: (result) =>{
+    console.log("response json data:",result);
+              console.log("response json data:",result.record[0].CourseID);
+              
+
+            // myform.srno.value = result.record.srno; 
+            //  myform.StudentID.value = result.record.StudentID; 
+             myform.CourseID.value = result.record[0].CourseID;
+             myform.Semester.value = result.record[0].Semester;
+             myform.Submark1.value = result.record[0].Submark1;
+             myform.Submark2.value = result.record[0].Submark2;
+             myform.Submark3.value = result.record[0].Submark3;
+      
+          },
+        //    dataType: "json",
+        //    contentType : "application/json",
+          error: (error) => {
+              console.log("2",error);
+          }
+
+      }); 
+    
+//     console.log("200",result);
+  
+//   error:(error)=>{
+//     console.log("500",error);
+//   {
+}
+
+</script>
+
+<form id="studentFormmark" style= "text-align:left">
+    <label for= "srno" >Sr No</label>
+    <input type ="text" id="srno" name="srno" > <br><br>
+    <label for= "Semester" >Semester</label>
+    <input type ="text" id="Semester" name="Semester"  > <br><br>
+    <label for= "StudentId" >StudentID</label>
+    <input type ="text" id="StudentID" name="StudentID" disabled > <br><br>
+    <label for= "CourseID" >CourseID</label>
+    <input type ="text" id="CourseID" name="CourseID" disabled > <br><br>
+    <label for= "Submark1" >Submark1</label>
+    <input type ="text" id="Submark1" name="Submark1" disabled > <br><br>
+    <label for= "Submark2" >Submark2</label>
+    <input type ="text" id="Submark2" name="Submark2" disabled > <br><br>
+    <label for= "Submark3" >Submark3</label>
+    <input type ="text" id="Submark3" name="Submark3" disabled > <br><br>
+</form>
+  
+
+    <button onclick = "viewmarks()" style="background-color: rgb(201, 95, 95);"> View Marks </button>
+    <button value=" Go back" onclick="history.back()" style="background-color: rgb(201, 95, 95);"> Cancel </button>
+
+    
+    </body>
+</html> 

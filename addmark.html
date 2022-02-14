@@ -1,0 +1,64 @@
+<html>
+ <head>
+   
+  <body style="background-color:powderblue;">
+<h1 style= "text-align:center; color:black;">Add Student Marks </h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script> 
+function Addingmarks()
+{
+  var myform= document.getElementById('studentFormmark');
+  var Student={
+    "srno" :myform.elements['srno'].value,
+    'StudentId': myform.elements['StudentID'].value,
+    "CourseID" :myform.elements['CourseID'].value,
+    "Semester" :myform.elements['Semester'].value,
+    "Submark1" :myform.elements['Submark1'].value,
+    "Submark2" :myform.elements['Submark2'].value,
+    "Submark3" :myform.elements['Submark3'].value,
+
+  }
+console.log(Student);
+  $.ajax({
+  method: "POST",
+  url: "http://localhost:4000/addmarks",
+  data: Student,
+  Success: (result) =>{
+    console.log("200",result);
+  },
+  error:(error)=>{
+    console.log("500",error);
+  }
+  });
+}
+</script>
+
+<!-- <form  style= "text-align:left"></form> -->
+<form id="studentFormmark" style= "text-align:left">
+    <label for= "srno" >Sr No</label>
+    <input type ="text" id="srno" name="srno" required> <br><br>
+    <label for= "StudentId" >StudentID</label>
+    <input type ="text" id="StudentID" name="StudentID " required> <br><br>
+    <label for= "CourseID" >CourseID</label>
+    <input type ="text" id="CourseID" name="CourseID" required> <br><br>
+    <label for= "Semester" >Semester</label>
+    <input type ="text" id="Semester" name="Semester" required> <br><br>
+    <label for= "Submark1" >Submark1</label>
+    <input type ="text" id="Submark1" name="Submark1" required> <br><br>
+    <label for= "Submark2" >Submark2</label>
+    <input type ="text" id="Submark2" name="Submark2" required> <br><br>
+    <label for= "Submark3" >Submark3</label>
+    <input type ="text" id="Submark3" name="Submark3" required> <br><br>
+  
+
+   
+
+    </form>
+    <button onclick="Addingmarks()" style="background-color: rgb(201, 95, 95);"> ADD Marks </button>
+    <button type="button" value=" Go back" onclick="history.back()" style="background-color: rgb(201, 95, 95);"> Cancel </button>
+
+    
+    </body>
+ </head>
+</html>

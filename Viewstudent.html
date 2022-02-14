@@ -1,0 +1,95 @@
+<h1 style="text-align: center;"> VIEW STUDENT</h1>
+    <!-- <input type="text" placeholder="Enter your StudentId" name="Std Id" id="Std Id" required><br><br> -->
+   
+    <!-- <button type="button" style="background-color: rgb(201, 95, 95);"> Cancel </button><br><br> -->
+
+    <body style="background-color:rgb(176, 230, 197);">
+        <h1 style= "text-align:left; color:black;"></h1>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+        <script>
+
+          function getStudent()
+          {
+var myform= document.getElementById('studentForm');
+var Student={
+  "Studentid" :myform.elements['Student_ID'].value
+//   'Firstname': myform.elements['fname'].value,
+//   "Lastname" :myform.elements['lname'].value,
+//   "DOB" :myform.elements['DOB'].value,
+//   "Gender" :myform.elements['Gender'].value,
+//   "Phoneno" :myform.elements['PhoneNo'].value,
+//   "EmailID" :myform.elements['Email'].value,
+//   "Address" :myform.elements['Address'].value,
+//   "YOA" :myform.elements['YOA'].value,
+//   "Course" :myform.elements['Course'].value,
+//   "Status" :myform.elements['Student status'].value
+
+}
+ $.ajax({
+          method: "POST",
+          url: "http://localhost:4000/getStudentList",
+          data: Student,
+          success:  (result) => {
+              console.log("response json data:",result);
+              console.log("response json data:",result.record.FirstName);
+            myform.Student_ID.value = result.record.Studentid; 
+             myform.fname.value = result.record.FirstName; 
+             myform.lname.value = result.record.LastName;
+             myform.Gender.value = result.record.Gender;
+             myform.DOB.value = result.record.DOB;
+             myform.PhoneNo.value = result.record.Phoneno;
+             myform.EmailId.value = result.record.EmailID;
+             myform.Address.value = result.record.Address;
+             myform.YOA.value = result.record.YOA;
+             myform.Course.value = result.record.Course;
+             myform.Studentstatus.value = result.record.Status; 
+      
+             
+          },
+        //    dataType: "json",
+        //    contentType : "application/json",
+          error: (error) => {
+              console.log("2",error);
+          }
+
+      }); 
+}
+</script>
+
+
+        
+
+
+    
+<form id="studentForm" style= "text-align:left">
+    <label for= "Student_ID" >Student ID</label>
+    <input type ="text" id="Student_ID" name="Student_ID"> <br><br>
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname" disabled><br><br>
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname" disabled><br><br>
+    <label for= "Gender">Gender</label>
+    <input type ="text" id="Gender" name="Gender" disabled > <br><br>
+    <label for= "DOB">DOB</label>
+    <input type ="text" id="DOB" name="DOB" disabled> <br><br>
+    <label for= "PhoneNo">PhoneNo</label>
+    <input type ="PhoneNo" id="PhoneNo" name="PhoneNo" disabled><br><br>
+    <label for= "EmailId">Email</label>
+    <input type ="text" id="EmailId" name="EmailId" disabled><br><br>
+    <label for= "Address">Address</label>
+    <input type ="text" id="Address" name="Address" disabled > <br><br>
+    <label for= "YOA">YOA</label>
+    <input type ="text" id="YOA" name="YOA" disabled> <br><br>
+    <label for= "Course">Course</label>
+    <input type ="text" id="Course" name="Course"  disabled> <br><br>
+    <label for= "Studentstatus">Student status</label>
+    <input type ="text" id="Studentstatus" name="Studentstatus" disabled> <br><br>
+    
+
+</form>
+<button onclick= "getStudent()" style="background-color: rgb(201, 95, 95);"> View STUDENT </button>
+<button type="button" style="background-color: rgb(95, 111, 201);"> OK</button>
+<button value=" Go back" onclick="history.back()" style="background-color: rgb(43, 44, 3);"> Cancel </button>
+</body>
+</html>

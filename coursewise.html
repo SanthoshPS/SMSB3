@@ -1,0 +1,44 @@
+<html>   
+  <body style="background-color:powderblue;">
+<h1 style= "text-align:center; color:black;">CourseWise Student Marks </h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<p id="demo"></p>
+
+<script> 
+function viewcoursemarks()
+{
+  var myform= document.getElementById('studentFormmark');
+  var Student={
+    "CourseID" : myform.elements['CourseID'].value,
+     "Semester" : myform.elements['Semester'].value    
+  }
+
+  $.ajax({
+  method: "POST",
+  url: "http://localhost:4000/getcoursewiseList",
+  data: Student,
+  success: (result) =>{
+    console.log("response json data:",result);
+              console.log("response json data:",result.record.CourseID);
+              const myJSON=JSON.stringify(result);
+              document.getElementById("demo").innerHTML=myJSON;            
+          },        
+          error: (error) => {
+              console.log("2",error);
+          }
+      }); 
+}
+
+</script>
+<form id="studentFormmark" style= "text-align:left">
+        <label for= "Semester" >Semester</label>
+    <input type ="text" id="Semester" name="Semester" required > <br><br>
+    <label for= "CourseID" >CourseID</label>
+    <input type ="text" id="CourseID" name="CourseID" required > <br><br>
+</form> 
+
+    <button onclick = "viewcoursemarks()" style="background-color: rgb(201, 95, 95);"> View Marks </button>
+    <button value=" Go back" onclick="history.back()" style="background-color: #c95f5f;"> Cancel </button>
+    
+    </body>
+</html> 

@@ -1,0 +1,29 @@
+
+<head>
+<title>Home Page</title>
+<body style=background-color:rgba(148,143,142,0.096);text-align:center><h1>  Welcome to ADMIN LOGIN</h1></body>
+
+<label for="signup"> Choose Action : </label>
+<select id="signup" onchange="move(this.value)">
+    <option value=" Add Student">Choose any options</option>
+  <option value=" AddStudent.html"> Add Student</option>
+    <option value="updateStudent.html">Update Student</option>
+    <option value="Deletestudent.html">Delete Student</option>
+    <option value="Viewstudent.html">View Student</option>
+    <option value="semesterwise.html">View semesterwise mark</option>
+  </select>
+  <br><br>
+ 
+
+</head>
+<button type="button" value=" Go back" onclick="history.back()" style="background-color: rgb(201, 95, 95);"> Cancel </button>
+<script>
+  function move(src)
+  {
+      window.location=src;
+  }
+
+</script>
+
+</body>
+</html>

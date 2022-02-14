@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<title>SMS</title>
+<h1 style=background-color:DodgerBlue;text-align:center> Student Management System</h1>
+<label for="signup"> I am : </label>
+<select id="signup">
+  <option value="Student">Student</option>
+    <option value="Admin">Admin</option>
+    <option value="Faculty">Faculty</option>
+  </select>
+  <br><br>
+
+  <button onclick="getOption()"> Who am I </button>
+  <p> You are a:
+    <span class="output"></span>
+</p>
+     
+  <script type="text/javascript">
+  function getOption() {
+      selectElement = document.querySelector('#signup');
+      output = selectElement.value;
+      document.querySelector('.output').textContent = output;
+  }
+  </script>
+<body>
+
+
+</body>
+</html>
